@@ -5,6 +5,7 @@ Tatiana Crawford's portfolio site. GitHub Pages serves the `main` branch at http
 ## Files
 
 - `index.html`: the whole site. CSS design tokens at the top, page sections in the middle, and the knowledge-graph script at the bottom.
+- `smart-ingredients.html`: the full Smart Ingredients case study, served at `/smart-ingredients` (the old Squarespace URL still works). Tatiana's own long-form writing: keep her wording and only fix typos. Images live in `images/smart-ingredients/`, and a figure hides itself until its image exists.
 - `404.html`: the "That page moved" page for old links. Keep its colors in step with `index.html`.
 - `CNAME`: `www.turbotats.com`. Don't change it.
 - `CLAUDE.local.md` and `private/` exist only on Tatiana's machine (gitignored). They hold her private career context. See "Source of truth."
