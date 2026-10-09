@@ -277,7 +277,7 @@ footer { padding-block: 28px 40px; color: var(--muted); font-size: 0.85rem; bord
         <div class="body">
           <p class="eyebrow">Novi Connect · 2025 · Defined the quality bar</p>
           <h3>An LLM document validator where a miss costs more than a false flag</h3>
-          <p>Brands submit documents to back the claims they make about their products, and Target's team reviewed every one by hand for its Target Zero program. A wrongly approved document is far more costly than one a person has to clear.</p>
+          <p>Brands submit documents to back the claims they make about their products, and a retailer's team reviewed every one by hand for its packaging sustainability program. A wrongly approved document is far more costly than one a person has to clear.</p>
           <ul>
             <li>Kept the policy logic deterministic and gave the model only narrow checks, such as whether a required label appears.</li>
             <li>Made recall on invalid documents the primary metric, because that is the expensive mistake.</li>
@@ -288,7 +288,7 @@ footer { padding-block: 28px 40px; color: var(--muted); font-size: 0.85rem; bord
         <div class="readout" aria-label="Results">
           <div class="rh"><span class="eyebrow">Eval results</span><span class="pass">Shipped</span></div>
           <div class="metric"><b>100%</b><span>recall on invalid documents</span></div>
-          <div class="metric"><b>−60%</b><span>false rejections (accuracy 53% → 81%)</span></div>
+          <div class="metric"><b>−60%</b><span>false rejections, cut through eval iteration</span></div>
           <div class="metric"><b>5h → 30m</b><span>review time per batch</span></div>
           <div class="metric"><b>~$0.01</b><span>per document</span></div>
         </div>
@@ -297,13 +297,13 @@ footer { padding-block: 28px 40px; color: var(--muted); font-size: 0.85rem; bord
       <article class="case">
         <div class="body">
           <p class="eyebrow">Novi Connect · 2026 · Program owner</p>
-          <h3>Ulta's Conscious Beauty program, re-launched in six weeks at a quarter of the cost</h3>
-          <p>Novi powers Ulta Beauty's Conscious Beauty program, which verifies ingredients, packaging, and product claims. The product behind it was no longer the company's focus but still earned real revenue, and Ulta wanted new functionality to renew. It was hard to maintain and harder to change, and the team had higher priorities.</p>
+          <h3>A retailer's verification program, re-launched in six weeks at a quarter of the cost</h3>
+          <p>Novi powers a retail customer's program that verifies ingredients, packaging, and product claims. The product behind it was no longer the company's focus but still earned real revenue, and the customer wanted new functionality to renew. It was hard to maintain and harder to change, and the team had higher priorities.</p>
           <ul>
             <li>Set three goals: meet the customer's needs, cut the product's footprint sharply, and keep the team on its main work.</li>
             <li>Ran it with AI-native development, and let the engineers decide what to cut and what to rearchitect.</li>
           </ul>
-          <p class="role"><strong>My role:</strong> I own the program at Novi and led the re-launch. The rearchitecture and the infrastructure savings are engineering's work. <a href="https://www.ulta.com/discover/conscious-beauty" target="_blank" rel="noopener">See the program on Ulta.com</a></p>
+          <p class="role"><strong>My role:</strong> I'm the PM owner of the program at Novi and led the re-launch. I redesigned the front-end experience to support the changes engineering recommended, and built it myself with Claude Code. The rearchitecture and the infrastructure savings are engineering's work.</p>
         </div>
         <div class="readout" aria-label="Results">
           <div class="rh"><span class="eyebrow">Outcome</span><span class="pass">Ahead of schedule</span></div>
@@ -327,26 +327,23 @@ footer { padding-block: 28px 40px; color: var(--muted); font-size: 0.85rem; bord
         <div class="readout" aria-label="Results">
           <div class="rh"><span class="eyebrow">Shipped</span><span class="pass">Shopify App Store</span></div>
           <div class="metric"><b>May 2026</b><span>launched on the Shopify App Store</span></div>
-          <div class="metric"><b>SKU</b><span>level recommendations for each product</span></div>
-          <div class="metric"><b>Free</b><span>for merchants</span></div>
         </div>
       </article>
 
       <article class="case">
         <div class="body">
           <p class="eyebrow">Novi Connect · Built</p>
-          <h3>An ontology generator that gives agents a semantic layer</h3>
-          <p>Novi's data model was fragmented, and coding agents working in it produced code that engineers had to clean up.</p>
+          <h3>An ontology generator for internal data modeling</h3>
+          <p>Novi's data model was fragmented. Modeling it well meant first mapping what the entities were and how they related.</p>
           <ul>
-            <li>Built a tool that generates ontologies and knowledge graphs, used for internal data-modeling exercises and as a semantic layer for agents.</li>
-            <li>Used it to produce the ontology that grounds our internal coding agents: more accurate code, faster, with less cleanup.</li>
+            <li>Built a tool that generates ontologies and knowledge graphs.</li>
+            <li>Used it in internal data-modeling exercises to map entities and relationships across the data model.</li>
           </ul>
-          <p class="role"><strong>My role:</strong> built the tool and wrote the ontology.</p>
+          <p class="role"><strong>My role:</strong> built the tool and ran it in our data-modeling work.</p>
         </div>
         <div class="readout" aria-label="What it produces">
           <div class="rh"><span class="eyebrow">Produces</span><span class="pass">In use</span></div>
           <div class="metric"><b>Graph</b><span>entities and relationships across a fragmented data model</span></div>
-          <div class="metric"><b>Layer</b><span>semantic context agents read before they write code</span></div>
         </div>
       </article>
 
@@ -408,16 +405,16 @@ footer { padding-block: 28px 40px; color: var(--muted); font-size: 0.85rem; bord
     </div>
     <div class="principles">
       <div class="principle">
+        <h3>Start with discovery</h3>
+        <p>I start by talking to customers and digging into the data we already have. Then I diagram the problem before we design anything, so the team builds on a strong foundation.</p>
+      </div>
+      <div class="principle">
         <h3>Fix the data first</h3>
         <p>Most product problems, and most AI quality problems, are data problems. Clean integrations, ontologies, and golden datasets come before clever features.</p>
       </div>
       <div class="principle">
-        <h3>Decide what the model decides</h3>
-        <p>Policy stays deterministic where it can. The model gets narrow, checkable jobs, and a person can always step in.</p>
-      </div>
-      <div class="principle">
-        <h3>Measure the expensive mistake</h3>
-        <p>Pick the metric that matches what failure costs, set the bar before building, and test against labeled data.</p>
+        <h3>Design for the expensive mistake</h3>
+        <p>Policy stays deterministic where it can, and the model gets narrow, checkable jobs. Pick the metric that matches what failure costs, set the bar before building, test against labeled data, and let a person step in.</p>
       </div>
       <div class="principle">
         <h3>Build it to learn it</h3>
@@ -429,12 +426,12 @@ footer { padding-block: 28px 40px; color: var(--muted); font-size: 0.85rem; bord
   <section id="experience">
     <div class="section-head">
       <h2>Experience</h2>
-      <p>Startups since the seed round, across CPG and retail, beauty, sustainability, supply chain, food retail, and enterprise security.</p>
+      <p>Growth-stage startups are my specialty; I've also worked from the seed round. My work spans CPG and retail, beauty, sustainability, supply chain, food retail, and enterprise security.</p>
     </div>
     <div class="roles">
       <div class="row"><span class="when">2024 – now</span><span class="what"><strong>Novi Connect</strong><span>Group Product Manager</span></span><span class="note">Data, AI/ML, and Retail Experience on a two-sided platform for brands and retailers. Hands-on builder since 2025.</span></div>
       <div class="row"><span class="when">2018 – 2023</span><span class="what"><strong>NakedPoppy</strong><span>Director of Product</span></span><span class="note">AI recommendations and photo-based skin tone analysis. Grew users 10× in three years.</span></div>
-      <div class="row"><span class="when">2017 – 2024</span><span class="what"><strong>Slater Crawford LLC</strong><span>Business Operations Consultant</span></span><span class="note">Helped a bakery grow from one location to five.</span></div>
+      <div class="row"><span class="when">2017 – 2024</span><span class="what"><strong>Slater Crawford LLC</strong><span>Business Operations Consultant</span></span><span class="note">Fractional Director of Operations for a bakery that grew from one location to five. Put SOPs and standardized recipe books in place, unified a POS setup that differed at every location, and coordinated the move to a new HR platform.</span></div>
       <div class="row"><span class="when">2017</span><span class="what"><strong>Domino Data Lab</strong><span>Product Manager</span></span><span class="note">Enterprise ML platform, working with customer data science teams.</span></div>
       <div class="row"><span class="when">2010 – 2017</span><span class="what"><strong>CloudPassage</strong><span>Product Manager</span></span><span class="note">Joined in the seed round. DevOps integrations, compliance, and a core UX redesign.</span></div>
     </div>
@@ -446,7 +443,7 @@ footer { padding-block: 28px 40px; color: var(--muted); font-size: 0.85rem; bord
       <p>Public pages about the programs, with what I owned in each.</p>
     </div>
     <div class="roles">
-      <div class="row"><span class="when">Ulta Beauty</span><span class="what"><strong><a href="https://www.ulta.com/discover/conscious-beauty" target="_blank" rel="noopener">Conscious Beauty, powered by Novi</a></strong><span>Program page</span></span><span class="note">I own the Conscious Beauty program at Novi and led its 2026 re-launch.</span></div>
+      <div class="row"><span class="when">Ulta Beauty</span><span class="what"><strong><a href="https://www.ulta.com/discover/conscious-beauty" target="_blank" rel="noopener">Conscious Beauty, powered by Novi</a></strong><span>Program page</span></span><span class="note">I'm the PM owner of the Conscious Beauty program at Novi.</span></div>
       <div class="row"><span class="when">Aug 2025</span><span class="what"><strong><a href="https://www.prnewswire.com/news-releases/grove-collaborative-taps-novi-to-power-verified-product-claims-across-its-full-marketplace-302525554.html" target="_blank" rel="noopener">Grove Collaborative taps Novi to power verified product claims</a></strong><span>PR Newswire</span></span><span class="note">I led the implementation of Grove's integration: product catalog data in, verified claims out. It proved out a 50% cut in enterprise integration time.</span></div>
       <div class="row"><span class="when">Jun 2020</span><span class="what"><strong><a href="https://beautymatter.com/articles/ingredient-transparency-technology-sephora-partners-with-novi" target="_blank" rel="noopener">Ingredient transparency technology: Sephora partners with Novi</a></strong><span>BeautyMatter</span></span><span class="note">This announced the partnership, before my time. I later rebuilt the analytics dashboards that track Sephora's Public Chemicals Policy status across its global catalog, the KPIs Sephora reports in its annual Impact Report, and reversed churn on the account.</span></div>
       <div class="row"><span class="when">Jun 2022</span><span class="what"><strong><a href="https://www.gcimagazine.com/brands-products/news/news/22263030/nakedpoppy-launches-smart-ingredients-technology-for-consumers-with-skin-allergies-sensitivities" target="_blank" rel="noopener">NakedPoppy launches Smart Ingredients for consumers with skin allergies and sensitivities</a></strong><span>Global Cosmetic Industry</span></span><span class="note">I led discovery and definition for the feature, from research through the PRD and test plan.</span></div>
