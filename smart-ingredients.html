@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Smart Ingredients · Tatiana Crawford</title>
-<meta name="description" content="Case study: how NakedPoppy built an ingredient-checking feature for shoppers with skin sensitivities, from discovery to launch.">
+<meta name="description" content="Case study: how NakedPoppy built Smart Ingredients, letting shoppers with skin sensitivities filter out the ingredients they react to. From discovery to launch in 2022.">
 <meta property="og:title" content="Smart Ingredients: a case study by Tatiana Crawford">
 <meta property="og:description" content="From discovery to launch: an ingredient-checking feature for shoppers with skin sensitivities.">
 <meta property="og:type" content="article">
@@ -61,6 +61,7 @@ ul ul { margin: 6px 0 0; }
 .challenge { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; margin: 8px 0 20px; }
 .challenge .eyebrow { margin-bottom: 4px; }
 .challenge p { margin: 0; font-family: var(--display); font-weight: 700; font-size: 1.2rem; line-height: 1.35; }
+.challenge p.role-line { font-family: var(--body); font-weight: 400; font-size: 1rem; line-height: 1.6; }
 .answer { font-weight: 600; }
 .pains { counter-reset: pain; list-style: none; padding: 0; display: grid; gap: 12px; margin: 12px 0 20px; }
 .pains li { counter-increment: pain; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px 14px 56px; position: relative; }
@@ -86,106 +87,105 @@ figcaption { font-size: 0.9rem; color: var(--muted); margin-top: 8px; }
 </header>
 
 <article>
-  <p class="eyebrow">NakedPoppy · Case study</p>
+  <p class="eyebrow">NakedPoppy · 2022 · Led discovery and definition</p>
   <h1>Smart Ingredients</h1>
-  <p class="sub">From discovery to launch</p>
+  <p class="sub">Letting shoppers with skin sensitivities filter out the ingredients they react to, and shop with confidence.</p>
   <ul class="facts" aria-label="At a glance">
-    <li>Double Diamond process</li>
     <li>15 in-depth interviews</li>
     <li>2× sample-size SKUs</li>
-    <li>750+ SKU ingredient database</li>
+    <li>750+ SKUs matched</li>
+    <li>Launched June 2022</li>
   </ul>
 
-  <p>At NakedPoppy, as a DTC beauty retailer, our user growth was extremely dependent on social media where the algorithms are constantly in flux and outside of our control. We knew we needed to strategically court a new channel to give us more stability and control over our user growth, as well as connect with our target customer (ingredient conscious beauty shoppers) on a deeper level.</p>
-  <p>We had some success partnering with wellness professional networks to recommend our platform to clients making the switch to clean beauty products. We hypothesized that pursuing the same strategy with allergists and skincare professionals could connect us with highly motivated customers trying to manage skin sensitivities. To court these new customers, we needed to enable them to confidently shop for makeup and skincare free of specific ingredients.</p>
-  <p>Before we started problem solving and imagining features, we needed to learn more about the user and the problem. The basic framework used for developing this feature was the Double Diamond approach.</p>
-
-  <figure><img src="images/smart-ingredients/double-diamond.jpg" alt="The Double Diamond design framework: discover, define, develop, deliver" loading="lazy"></figure>
-  <figure><img src="images/smart-ingredients/research-overview.jpg" alt="Research overview for the Smart Ingredients project" loading="lazy"></figure>
-
-  <h2>Problem space</h2>
   <div class="challenge">
-    <p class="eyebrow">Challenge</p>
-    <p>Make our product into a tool that can be used by people with skin sensitivities to confidently shop for makeup and skincare.</p>
+    <p class="eyebrow">My role</p>
+    <p class="role-line">Research and synthesis, journey map and persona, competitive research, wireframes, the PRD, and the test plan. Our designer made the high-fidelity designs, and engineering designed the system architecture.</p>
   </div>
 
-  <p>First, we had to validate that there is a market worth pursuing and whether the problem is widespread / painful enough to make building a solution worthwhile. We took the following steps:</p>
-  <ul>
-    <li>Talk to our wellness partners about their experiences with ingredient-sensitive clients (both frequency and severity of the issues they discussed)</li>
-    <li>Market research data: how widespread is ingredient sensitivity in beauty?</li>
-    <li>Look at data in our own customer base to gauge demand
-      <ul>
-        <li>Search terms</li>
-        <li>Customer service emails and returns</li>
-        <li>Social media comments</li>
-      </ul>
-    </li>
-  </ul>
-  <p class="answer">In short: Is this in fact a problem worth solving, and are we in a position to solve it? Yes.</p>
+  <h2>Why we built it</h2>
+  <p>NakedPoppy was a direct-to-consumer clean beauty retailer, and most of our growth came from social media. Those algorithms changed constantly and were out of our control, so we needed a steadier channel, ideally one that brought us closer to our core customer: shoppers who read ingredient labels.</p>
+  <p>Wellness professionals had already been recommending us to clients switching to clean beauty. Our bet was that allergists and skincare professionals could do the same for people managing skin sensitivities, a group with a strong reason to care. To earn those referrals, the product had to let someone shop confidently without the ingredients they react to.</p>
+  <p>We followed the Double Diamond: understand the problem fully before designing a solution.</p>
+  <figure><img src="images/smart-ingredients/double-diamond.jpg" alt="The Double Diamond framework: discover and define the problem, then develop and deliver the solution" loading="lazy"></figure>
 
-  <p>Now that we know we want to solve the problem, we need to understand the user. Who is this person? Is this problem a serious pain that they are willing to pay to solve? How are they solving the problem now? What are their experiences, pain points, etc. We took the following steps to answer these questions:</p>
-  <ul>
-    <li>Read through conversations with active customers who reached out asking for ingredient sensitivity assistance. When possible, we set up follow-up interviews with those who were willing to chat.</li>
-    <li>Market research interviews through userinterviews.com to interview 15 people in depth about their experiences</li>
-  </ul>
-  <p>I presented findings to both the product development team (engineering, data science, design) and the marketing team. The questions that came from that discussion were extremely valuable for followup conversations with users and additional market research (e.g. What are the top 20 most common irritating ingredients?).</p>
-  <p>Using the data gathered in this process, I was able to consolidate the findings into a user journey map and a user persona, and save a list of specific test cases that we could use for the solution testing later.</p>
-  <p class="aside">(It is also at this point that I did competitive research. I wanted to wait until talking to users before defining who competitors are; without understanding how they are already solving the problem, I would have been basing my research off of my own assumptions rather than user data.)</p>
+  <h2>Understanding the problem</h2>
+  <div class="challenge">
+    <p class="eyebrow">Challenge</p>
+    <p>Turn NakedPoppy into a tool people with skin sensitivities can use to shop for makeup and skincare with confidence.</p>
+  </div>
 
-  <p>Once we had taken the time to understand the user’s experience of the overall problem, we prioritized experiences of friction / frustration by how frequently they appeared in our research. The top three were:</p>
+  <h3>Is it worth solving?</h3>
+  <p>Before committing, we checked whether the problem was common and painful enough to justify building for:</p>
+  <ul>
+    <li>Asked our wellness partners how often ingredient-sensitive clients came up, and how severe their problems were.</li>
+    <li>Pulled market research on how widespread ingredient sensitivity is in beauty.</li>
+    <li>Looked for demand in our own data: search terms, customer service emails, returns, and social comments.</li>
+  </ul>
+  <p class="answer">The answer was yes: a real problem, and one we were well placed to solve.</p>
+
+  <h3>Who is this shopper?</h3>
+  <p>Next we needed to understand the person. How do they shop today, what does it cost them, and would they pay for something better?</p>
+  <ul>
+    <li>Read through conversations with customers who had asked us for help with ingredient sensitivities, and followed up with interviews where they agreed.</li>
+    <li>Ran 15 in-depth interviews with shoppers recruited through User Interviews.</li>
+  </ul>
+  <p>I shared early findings with product (engineering, data science, and design) and with marketing. Their questions shaped the next round of interviews and research, such as which 20 ingredients cause the most irritation.</p>
+  <p>I turned the research into a journey map, a persona, and a set of real-world test cases we would later use to check the solution.</p>
+  <p class="aside">I held competitive research until after the interviews. Shoppers' own workarounds defined who the competition actually was, rather than my assumptions about it.</p>
+
+  <p>Ranking the friction points by how often they came up gave us three to solve:</p>
   <ol class="pains">
-    <li>For ingredient-sensitive people who know their allergen, they have to become ingredient experts and check labels for every single thing they buy to prevent a painful / unsightly reaction. This anxiety and friction is a huge obstacle to shopping.</li>
-    <li>This persona prefers to buy sample sizes or try new products in-store to patch test, even if they believe the product to be safe.</li>
-    <li>This persona checks the return policy before shopping for full-sized beauty products, knowing that a reaction is possible. They will only shop if there is a generous return policy.</li>
+    <li><strong>Every purchase means checking the label.</strong> Shoppers who know their triggers have to become ingredient experts and read every label to avoid a painful or visible reaction. That anxiety makes shopping a chore.</li>
+    <li><strong>They want to test before committing.</strong> Even for products they believe are safe, they prefer sample sizes or an in-store patch test.</li>
+    <li><strong>They check the return policy first.</strong> They only buy full-size products from retailers with a generous return policy, in case of a reaction.</li>
   </ol>
-  <figure><img src="images/smart-ingredients/persona.jpg" alt="User persona and journey map for an ingredient-sensitive shopper" loading="lazy"></figure>
 
-  <h2>Solution space</h2>
-  <h3>Knock out low-hanging fruit</h3>
-  <p>First, we noticed two of the top pain points were addressable right away without much engineering or design effort, so we implemented both right away to start gathering user feedback.</p>
+  <h2>Building the solution</h2>
+  <h3>Quick wins first</h3>
+  <p>Two of the three problems needed almost no engineering, so we shipped fixes right away and started learning from them.</p>
   <ul>
-    <li>We asked our head of inventory operations to reach out to our suppliers to see if they offer sample sizes or sampling programs. She was able to double the number of sample SKUs available on our platform. Increasing sample availability was also a way to mitigate the risk of increased returns of full-sized products.</li>
-    <li>We updated the wording on our (already generous) return policy to recognize skin reactions specifically as a legitimate return reason. We also decided to call out the policy on key decision screens (Account creation page, product page near “Add to Cart”, and in checkout flow).
-      <ul>
-        <li><strong>Risk:</strong> Will making our return policy so prominent result in other people taking advantage?</li>
-        <li><strong>Followup:</strong> Monitor return rate; future possible solution was to show these return policy callouts conditionally, since we know which users have ingredient sensitivities</li>
-      </ul>
-    </li>
+    <li><strong>More samples.</strong> Our head of inventory operations worked with suppliers to find sample sizes and sampling programs, and doubled the number of sample SKUs on the platform. More samples also lowered the risk of returns on full-size products.</li>
+    <li><strong>A clearer return policy.</strong> Our policy was already generous, so we named skin reactions as a valid return reason and showed it where people decide: account creation, next to Add to Cart, and at checkout. The risk was abuse, so we monitored return rates, with a plan to show the message only to shoppers with known sensitivities if needed.</li>
   </ul>
 
-  <h3>Label checking feature</h3>
-  <p>As a personalized shopping platform, automating the tedious process of ingredient label checking fit perfectly into our existing platform and strategy. We already had an assessment to guide people to the right products; ingredients would just be one more dimension.</p>
-  <p class="story">User story: As an ingredient-sensitive shopper, I want to indicate which ingredient(s) I am avoiding so that I can exclusively browse products that are safe for me.</p>
-  <p>At this point, we came back to engineering, data science, and design to sketch out possible solutions and discuss feasibility. Regardless of the exact frontend experience, the basic flow would be:</p>
-  <figure><img src="images/smart-ingredients/basic-flow.png" alt="Basic flow of the ingredient-checking feature" loading="lazy"></figure>
+  <h3>Automatic label checking</h3>
+  <p>Label checking was the big one, and it fit our product naturally. Shoppers already took an assessment that guided them to the right products; ingredients would be one more dimension.</p>
+  <p class="story">As an ingredient-sensitive shopper, I want to say which ingredients I avoid, so I only see products that are safe for me.</p>
+  <p>With engineering, data science, and design, we sketched options and checked feasibility. Whatever the final interface, the core flow looked like this:</p>
+  <figure><img src="images/smart-ingredients/basic-flow.png" alt="Core flow: the shopper selects ingredients to avoid, and the catalog filters to products without them" loading="lazy"></figure>
 
-  <p>At a high level, this solution was feasible, with one major consideration:</p>
-  <p>Cosmetic ingredients are not written in a standard way and vary widely from brand to brand. For example, the following ingredients are the same: Castor Seed Oil, Castor Oil, Ricinus Communis Oil, Seed Oils (Castor), etc.</p>
-  <p>For the “ingredient check system”, we needed to build a database reconciling ingredient groups for searching across product ingredient lists. This would require ongoing input from our internal chemist, as we were constantly adding to our 750+ SKU collection. We would need to build a simple interface for her (rather than having her interact directly with the database).</p>
+  <p>It was feasible, with one hard problem: cosmetic ingredients have no standard names. Castor Seed Oil, Castor Oil, Ricinus Communis Oil, and Seed Oils (Castor) are all the same thing, written differently by different brands.</p>
+  <p>So the feature needed a database that groups every name an ingredient goes by, to search across each product's ingredient list. Our in-house chemist would keep it current as the catalog grew past 750 SKUs, so we planned a simple interface for her instead of direct database access.</p>
 
   <div class="pause">
     <h3>Pause to check in</h3>
-    <p>This solution requires a relatively large effort, so we paused to ask if this was too much scope creep and did another quick risk assessment to determine whether to move forward, including a check in with our internal chemist to determine any legal risk around safety claims for this solution. As an ingredient-focused company, leadership decided it was strategically worthwhile to invest in an ingredient checking system.</p>
+    <p>This was a bigger build than the quick wins, so we stopped to check for scope creep and reassess risk, including a review with our chemist of any legal exposure around safety claims. Leadership decided an ingredient-checking system was worth the investment for an ingredient-focused company.</p>
   </div>
 
-  <p>Now that the direction has been discussed with stakeholders, it was finally time to write a Product Requirements Document, to define success metrics, flesh out requirements, and prioritize use cases. This document served as the jumping off point for UX design iterations while the engineering team figured out the architecture of the ingredient check system.</p>
+  <p>With the direction agreed, I wrote the PRD: success metrics, requirements, and prioritized use cases. It anchored the design iterations while engineering worked out the system's architecture.</p>
 
   <figure>
-    <img src="images/smart-ingredients/wireframes.png" alt="Wireframes for the ingredient microservice" loading="lazy">
-    <figcaption>Wireframes (created by me) for the ingredient microservice</figcaption>
+    <img src="images/smart-ingredients/wireframes.png" alt="Wireframes for the ingredient-checking flow" loading="lazy">
+    <figcaption>My wireframes for the ingredient microservice.</figcaption>
   </figure>
   <figure>
     <div class="pair">
       <img src="images/smart-ingredients/mockup.png" alt="High-fidelity mockup used for usability testing" loading="lazy">
-      <img src="images/smart-ingredients/final.png" alt="Final state of the Smart Ingredients feature" loading="lazy">
+      <img src="images/smart-ingredients/final.png" alt="The Smart Ingredients feature as it launched" loading="lazy">
     </div>
-    <figcaption>Left: high-fidelity mockup created by our designer for usability testing. Right: final state of the feature.</figcaption>
+    <figcaption>Left: our designer's high-fidelity mockup for usability testing. Right: the feature at launch.</figcaption>
   </figure>
   <figure>
-    <img src="images/smart-ingredients/test-plan.png" alt="Test plan for the ingredient-checking system" loading="lazy">
-    <figcaption>Test plan created by me to ensure the ingredient checking system worked as expected. There was no QA department, so the whole team pitched in to ensure product quality.</figcaption>
+    <img src="images/smart-ingredients/test-plan.jpg" alt="Test plan for the ingredient-checking system" loading="lazy">
+    <figcaption>My test plan for the ingredient-checking system. We had no QA team, so everyone pitched in on testing.</figcaption>
   </figure>
-  <figure><img src="images/smart-ingredients/launch.png" alt="Smart Ingredients after launch" loading="lazy"></figure>
+
+  <h2>Launch</h2>
+  <p>Smart Ingredients launched in June 2022, and the trade press picked it up.</p>
+  <figure>
+    <img src="images/smart-ingredients/launch-coverage.jpg" alt="Global Cosmetic Industry article: NakedPoppy Launches Smart Ingredients Database for Consumers With Skin Allergies and Sensitivities, June 9, 2022" loading="lazy">
+    <figcaption><a href="https://www.gcimagazine.com/brands-products/news/news/22263030/nakedpoppy-launches-smart-ingredients-technology-for-consumers-with-skin-allergies-sensitivities" target="_blank" rel="noopener">Global Cosmetic Industry, June 9, 2022</a></figcaption>
+  </figure>
 </article>
 
 <footer class="end">
