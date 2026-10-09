@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tatiana Crawford · Data, integrations &amp; AI product leader</title>
+<meta name="description" content="Tatiana Crawford builds the data foundations and integrations that AI products run on: retailer integrations, catalog pipelines, ontologies, and evals. Denver, CO.">
+<meta property="og:title" content="Tatiana Crawford">
+<meta property="og:description" content="Tatiana Crawford builds the data foundations and integrations that AI products run on: retailer integrations, catalog pipelines, ontologies, and evals. Denver, CO.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.turbotats.com/">
+<link rel="canonical" href="https://www.turbotats.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232A45D6'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-weight='700' font-size='28' fill='white' text-anchor='middle'%3ETC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: a working portfolio read like an eval report. Hero thesis beside a live knowledge graph of how the work connects,
+   then case studies as two-column "claim + measured result" spreads, then principles, experience, contact. */
+:root {
+  --bg: #F2F5F4;
+  --surface: #FFFFFF;
+  --ink: #13201E;
+  --muted: #55625E;
+  --line: #D3DBD8;
+  --accent: #2A45D6;
+  --accent-soft: #E2E7FB;
+  --pass: #0E7F57;
+  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body: "IBM Plex Sans", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --step-0: 1rem; --step-1: 1.2rem; --step-2: 1.6rem; --step-3: 2.3rem; --step-4: clamp(2.6rem, 6vw, 4.4rem);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1513; --surface: #16201E; --ink: #E6EEEB; --muted: #9AA9A4; --line: #2A3633;
+    --accent: #93A5FF; --accent-soft: #1D2552; --pass: #4CCB9A; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1513; --surface: #16201E; --ink: #E6EEEB; --muted: #9AA9A4; --line: #2A3633;
+  --accent: #93A5FF; --accent-soft: #1D2552; --pass: #4CCB9A; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: var(--step-0); line-height: 1.6;
+  padding-inline: clamp(16px, 5vw, 56px); padding-block: 0;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1120px; margin-inline: auto; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, .node:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.08; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+.eyebrow {
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+}
+
+/* ---------- Top bar ---------- */
+.top {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px;
+  padding-block: 22px; border-bottom: 1px solid var(--line);
+}
+.mark { font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: -0.01em; color: var(--ink); text-decoration: none; }
+.top nav { display: flex; flex-wrap: wrap; gap: 20px; }
+.top nav a { color: var(--muted); text-decoration: none; font-size: 0.95rem; }
+.top nav a:hover { color: var(--ink); }
+
+/* ---------- Hero ---------- */
+.hero {
+  display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px);
+  align-items: center; padding-block: clamp(40px, 7vw, 88px) clamp(32px, 5vw, 64px);
+}
+.hero h1 { font-size: var(--step-4); font-weight: 800; letter-spacing: -0.035em; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero .lede { margin-top: 22px; font-size: var(--step-1); color: var(--muted); max-width: 34em; }
+.domains { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.02em; border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; color: var(--ink); background: var(--surface); }
+.hero .meta { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px 22px; }
+.hero .meta a { font-weight: 500; }
+
+.graph-card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 14px 10px;
+  min-width: 0;
+}
+.graph-card svg { width: 100%; height: auto; display: block; }
+.graph-card .caption { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 6px 4px 2px; }
+.edge { stroke: var(--line); stroke-width: 1.4; transition: stroke 160ms ease, stroke-width 160ms ease; }
+.edge.on { stroke: var(--accent); stroke-width: 2.2; }
+.node { cursor: pointer; }
+.node circle { fill: var(--surface); stroke: var(--ink); stroke-width: 1.5; transition: fill 160ms ease; }
+.node.skill circle { fill: var(--accent-soft); stroke: var(--accent); }
+.node.core circle { fill: var(--accent); stroke: var(--accent); }
+.node text { font-family: var(--mono); font-size: 11.5px; fill: var(--ink); }
+.node.core text { font-family: var(--display); font-weight: 700; font-size: 14px; }
+.node.on circle { fill: var(--accent); stroke: var(--accent); }
+.dim .node:not(.on) text { fill: var(--muted); }
+
+/* ---------- Sections ---------- */
+section { padding-block: clamp(40px, 6vw, 72px); border-top: 1px solid var(--line); }
+.section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; margin-bottom: clamp(24px, 4vw, 40px); }
+.section-head h2 { font-size: var(--step-3); letter-spacing: -0.025em; }
+.section-head p { color: var(--muted); max-width: 34em; }
+
+/* ---------- Case studies ---------- */
+.cases { display: grid; gap: clamp(20px, 3vw, 28px); }
+.case {
+  display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: clamp(20px, 3.5vw, 44px);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: clamp(20px, 3.5vw, 36px);
+}
+.case h3 { font-size: var(--step-2); letter-spacing: -0.02em; margin-top: 10px; }
+.case .body { min-width: 0; display: grid; gap: 14px; align-content: start; }
+.case .body > p { max-width: 62ch; }
+.case ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; max-width: 62ch; }
+.case li::marker { color: var(--accent); }
+.case .role { font-size: 0.92rem; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 12px; }
+.case .role strong { color: var(--ink); font-weight: 600; }
+
+.pipeline { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-family: var(--mono); font-size: 0.8rem; }
+.pipeline span { border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; background: var(--bg); }
+.pipeline i { font-style: normal; color: var(--muted); }
+.pipeline .loop { border-style: dashed; border-color: var(--accent); color: var(--accent); background: transparent; }
+
+.readout {
+  min-width: 0; align-self: start; display: grid; gap: 0;
+  border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--bg);
+}
+.readout .rh { display: flex; justify-content: space-between; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.metric { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 14px; align-items: baseline; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.metric:last-child { border-bottom: 0; }
+.metric b {
+  font-family: var(--mono); font-weight: 500; font-size: 1.45rem; letter-spacing: -0.02em; font-variant-numeric: tabular-nums;
+  color: var(--ink); white-space: nowrap;
+}
+.metric span { font-size: 0.88rem; color: var(--muted); line-height: 1.4; }
+.pass { color: var(--pass); font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* ---------- Principles ---------- */
+.principles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+.principle { padding: 22px 24px 22px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+.principle:nth-child(odd) { border-right: 1px solid var(--line); }
+.principle:nth-child(even) { padding-left: 24px; }
+.principle h3 { font-size: var(--step-1); letter-spacing: -0.01em; margin-bottom: 8px; }
+.principle p { color: var(--muted); max-width: 46ch; }
+
+/* ---------- Experience ---------- */
+.roles { display: grid; gap: 0; }
+.roles .row {
+  display: grid; grid-template-columns: 11rem minmax(0, 1fr) minmax(0, 1.4fr); gap: 6px 24px;
+  padding-block: 16px; border-bottom: 1px solid var(--line); align-items: baseline;
+}
+.roles .row:first-child { border-top: 1px solid var(--line); }
+.roles .when { font-family: var(--mono); font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.roles .what strong { font-family: var(--display); font-weight: 700; font-size: 1.08rem; display: block; }
+.roles .what span { color: var(--muted); font-size: 0.93rem; }
+.roles .note { color: var(--muted); font-size: 0.95rem; }
+
+/* ---------- Contact ---------- */
+.contact { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: end; }
+.contact h2 { font-size: var(--step-4); letter-spacing: -0.035em; font-weight: 800; }
+.contact .links { display: grid; gap: 12px; }
+.email { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.email code {
+  font-family: var(--mono); font-size: 1rem; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 8px; padding: 8px 12px; user-select: all; overflow-wrap: anywhere;
+}
+button.copy {
+  font: 500 0.9rem var(--body); color: var(--surface); background: var(--ink); border: 0; border-radius: 8px; padding: 9px 14px; cursor: pointer;
+}
+button.copy:hover { background: var(--accent); }
+footer { padding-block: 28px 40px; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--line); margin-top: clamp(40px, 6vw, 72px); }
+
+@media (max-width: 860px) {
+  .hero, .case, .contact { grid-template-columns: minmax(0, 1fr); }
+  .roles .row { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  .principles { grid-template-columns: minmax(0, 1fr); }
+  .principle, .principle:nth-child(even) { padding: 18px 0; border-right: 0; }
+  .top nav { gap: 14px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<style>html{scroll-behavior:smooth} body{margin:0} @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="#top">Tatiana Crawford</a>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#approach">Approach</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero" id="top">
+    <div>
+      <p class="eyebrow">Data, integrations &amp; AI product leader · Denver, CO</p>
+      <h1 style="margin-top:14px">I build the <em>data</em> foundations and integrations that AI products run on.</h1>
+      <p class="lede">Twelve years in B2B SaaS. Most of my work connects messy product data across companies and systems: retailer integrations, catalog pipelines, ontologies, and analytics. Today I build AI on top of those foundations, and I write the evals that prove it works.</p>
+      <div class="domains" aria-label="Domains"><span class="chip">CPG &amp; retail</span><span class="chip">Beauty</span><span class="chip">Sustainability</span><span class="chip">Supply chain</span><span class="chip">Food retail</span><span class="chip">Enterprise security</span></div>
+      <div class="meta">
+        <a href="#work">See the work</a>
+        <a href="https://linkedin.com/in/tatianacrawford" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/Turbo-Tats" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+
+    <figure class="graph-card" style="margin:0">
+      <svg id="graph" viewBox="0 0 520 400" role="img" aria-label="Knowledge graph linking skills to projects">
+        <g id="edges"></g>
+        <g id="nodes"></g>
+      </svg>
+      <figcaption class="caption">
+        <span class="eyebrow">How the work connects</span>
+        <span class="eyebrow">Hover a node</span>
+      </figcaption>
+    </figure>
+  </div>
+
+  <section id="work">
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <p>Data and integrations first, then the AI built on them. Each project names the decision I made and the number that proved it. Customer names appear only where the partnership is already public.</p>
+    </div>
+
+    <div class="cases">
+      <article class="case">
+        <div class="body">
+          <p class="eyebrow">Novi Connect · 2024 – 2025 · Led implementation</p>
+          <h3>Retailer integrations that put five programs on one platform</h3>
+          <p>Each retailer ran its own program for verifying claims about the products it sells, with its own data and its own review process. Novi needed one platform that could take any retailer's catalog in and send verified results back.</p>
+          <ul>
+            <li>Consolidated three beauty retailers' programs, including Ulta's and Sephora's, onto one platform without losing a customer.</li>
+            <li>Led bidirectional integrations to onboard Target Zero and Grove Collaborative: product catalog data in through file ingestion, verified certification data out through an API into each retailer's system.</li>
+            <li>Used the Grove onboarding to prove out a faster, repeatable path for every retailer that followed.</li>
+          </ul>
+          <p class="role"><strong>My role:</strong> led the consolidation and both integrations as PM.</p>
+        </div>
+        <div class="readout" aria-label="Results">
+          <div class="rh"><span class="eyebrow">Outcome</span><span class="pass">Live</span></div>
+          <div class="metric"><b>100%</b><span>customer retention through the consolidation</span></div>
+          <div class="metric"><b>5</b><span>retailer programs running on one platform</span></div>
+          <div class="metric"><b>18,500</b><span>products from 667 brands in Target Zero</span></div>
+          <div class="metric"><b>−50%</b><span>enterprise onboarding time, proven on Grove</span></div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="body">
+          <p class="eyebrow">Novi Connect · Q4 2025 · Designed, built, evaluated</p>
+          <h3>Product categorization a major tech platform could accept</h3>
+          <p>Product data from about fifty web scrapes and CSV files had to be normalized and categorized before it went to a major tech platform. Categories had to be consistent across products, and plenty of edge cases needed a person.</p>
+          <div class="pipeline" aria-label="Pipeline">
+            <span>Normalize</span><i>→</i><span>Rules</span><i>→</i><span>Embeddings</span><i>→</i><span>LLM</span><i>→</i><span>Human review</span><i>↺</i><span class="loop">Corrections feed back</span>
+          </div>
+          <ul>
+            <li>Used deterministic rules where they were enough, and embeddings built from a labeled golden dataset to keep categories consistent.</li>
+            <li>Sent only the uncertain cases to an LLM, and the hardest ones to a person whose corrections improve later assignments.</li>
+            <li>Tested against labeled products with their categories stripped, then added an LLM judge to catch drift once labeled data ran out.</li>
+          </ul>
+          <p class="role"><strong>My role:</strong> gathered the data, designed the architecture, built the tool in Lovable, and designed and ran the evals.</p>
+        </div>
+        <div class="readout" aria-label="Results">
+          <div class="rh"><span class="eyebrow">Eval results</span><span class="pass">Both bars met</span></div>
+          <div class="metric"><b>99%</b><span>accuracy on categories the system assigned on its own</span></div>
+          <div class="metric"><b>80%+</b><span>of products categorized with no human touch</span></div>
+          <div class="metric"><b>~50</b><span>messy source files reconciled into one format</span></div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="body">
+          <p class="eyebrow">Novi Connect · 2025 · Defined the quality bar</p>
+          <h3>An LLM document validator where a miss costs more than a false flag</h3>
+          <p>Brands submit documents to back the claims they make about their products, and Target's team reviewed every one by hand. A wrongly approved document is far more costly than one a person has to clear.</p>
+          <ul>
+            <li>Kept the policy logic deterministic and gave the model only narrow checks, such as whether a required label appears.</li>
+            <li>Made recall on invalid documents the primary metric, because that is the expensive mistake.</li>
+            <li>Shipped with a human override on every decision and audit reporting.</li>
+          </ul>
+          <p class="role"><strong>My role:</strong> framed the problem, chose the metric, and set the bar. An engineering colleague ran the evaluation against 223 human-labeled documents.</p>
+        </div>
+        <div class="readout" aria-label="Results">
+          <div class="rh"><span class="eyebrow">Eval results</span><span class="pass">Shipped</span></div>
+          <div class="metric"><b>100%</b><span>recall on invalid documents</span></div>
+          <div class="metric"><b>−60%</b><span>false rejections (accuracy 53% → 81%)</span></div>
+          <div class="metric"><b>5h → 30m</b><span>review time per batch</span></div>
+          <div class="metric"><b>~$0.01</b><span>per document</span></div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="body">
+          <p class="eyebrow">Novi Connect · 2026 · Program owner</p>
+          <h3>Ulta's Conscious Beauty program, re-launched in six weeks at a quarter of the cost</h3>
+          <p>Novi powers Ulta Beauty's Conscious Beauty program, which verifies ingredients, packaging, and product claims. The product behind it was no longer the company's focus but still earned real revenue, and Ulta wanted new functionality to renew. It was hard to maintain and harder to change, and the team had higher priorities.</p>
+          <ul>
+            <li>Set three goals: meet the customer's needs, cut the product's footprint sharply, and keep the team on its main work.</li>
+            <li>Ran it with AI-native development, and let the engineers decide what to cut and what to rearchitect.</li>
+          </ul>
+          <p class="role"><strong>My role:</strong> I own the program at Novi and led the re-launch. The rearchitecture and the infrastructure savings are engineering's work. <a href="https://www.ulta.com/discover/conscious-beauty" target="_blank" rel="noopener">See the program on Ulta.com</a></p>
+        </div>
+        <div class="readout" aria-label="Results">
+          <div class="rh"><span class="eyebrow">Outcome</span><span class="pass">Ahead of schedule</span></div>
+          <div class="metric"><b>6 wks</b><span>from kickoff to launch</span></div>
+          <div class="metric"><b>−75%</b><span>infrastructure bill</span></div>
+          <div class="metric"><b>10 → 3</b><span>people to maintain it, part-time outside launches</span></div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="body">
+          <p class="eyebrow">Novi Connect · 2026 · Prototyped, then led</p>
+          <h3>A Shopify app that helps products get chosen by AI shopping agents</h3>
+          <p>Shoppers are starting to ask AI agents what to buy, and merchants can't see why an agent picks one product over another.</p>
+          <ul>
+            <li>Prototyped the idea myself as a Claude Skills integration with Shopify, to prove the loop worked before engineering committed.</li>
+            <li>Led engineering as PM as they built it into the AI Shopping Optimizer: it imports a store's product data, analyzes how AI models evaluate products in that category, and writes SKU-level improvements back to the store.</li>
+          </ul>
+          <p class="role"><strong>My role:</strong> built the prototype, then led the production build as PM. <a href="https://apps.shopify.com/aioptimizer" target="_blank" rel="noopener">See the app</a></p>
+        </div>
+        <div class="readout" aria-label="Results">
+          <div class="rh"><span class="eyebrow">Shipped</span><span class="pass">Shopify App Store</span></div>
+          <div class="metric"><b>May 2026</b><span>launched on the Shopify App Store</span></div>
+          <div class="metric"><b>SKU</b><span>level recommendations for each product</span></div>
+          <div class="metric"><b>Free</b><span>for merchants</span></div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="body">
+          <p class="eyebrow">Novi Connect · Built</p>
+          <h3>An ontology generator that gives agents a semantic layer</h3>
+          <p>Novi's data model was fragmented, and coding agents working in it produced code that engineers had to clean up.</p>
+          <ul>
+            <li>Built a tool that generates ontologies and knowledge graphs, used for internal data-modeling exercises and as a semantic layer for agents.</li>
+            <li>Used it to produce the ontology that grounds our internal coding agents: more accurate code, faster, with less cleanup.</li>
+          </ul>
+          <p class="role"><strong>My role:</strong> built the tool and wrote the ontology.</p>
+        </div>
+        <div class="readout" aria-label="What it produces">
+          <div class="rh"><span class="eyebrow">Produces</span><span class="pass">In use</span></div>
+          <div class="metric"><b>Graph</b><span>entities and relationships across a fragmented data model</span></div>
+          <div class="metric"><b>Layer</b><span>semantic context agents read before they write code</span></div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="body">
+          <p class="eyebrow">NakedPoppy · Led discovery and definition</p>
+          <h3>Smart Ingredients: shopping with confidence for sensitive skin</h3>
+          <p>Growth depended on social algorithms the company didn't control. Wellness partnerships had worked before, so we tested whether allergists and skincare professionals could bring in shoppers managing skin sensitivities.</p>
+          <ul>
+            <li>Combined about 15 in-depth interviews with search terms, support emails, returns, and partner conversations.</li>
+            <li>Shipped quick wins first: roughly doubled sample-size SKUs, and named skin reactions as a valid return reason at the moments shoppers check.</li>
+            <li>Defined an ingredient database that reconciles the many names one ingredient goes by, with a simple interface for our chemist as the catalog grew past 750 SKUs.</li>
+          </ul>
+          <p class="role"><strong>My role:</strong> research synthesis, journey map and persona, competitive research, wireframes, test plan, and the PRD.</p>
+        </div>
+        <div class="readout" aria-label="Key facts">
+          <div class="rh"><span class="eyebrow">Discovery</span><span class="pass">Launched</span></div>
+          <div class="metric"><b>~15</b><span>in-depth user interviews</span></div>
+          <div class="metric"><b>~2×</b><span>sample-size SKUs on the platform</span></div>
+          <div class="metric"><b>750+</b><span>SKUs covered by ingredient matching</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="side">
+    <div class="section-head">
+      <h2>Side projects</h2>
+      <p>Research I run on my own time.</p>
+    </div>
+    <div class="cases">
+      <article class="case">
+        <div class="body">
+          <p class="eyebrow">Side project · Fall 2026 · In progress</p>
+          <h3>Is my grocery store using dynamic pricing?</h3>
+          <p>King Soopers now uses electronic shelf labels, which can change prices at any time. I designed a study to find out whether, where, and how often one store actually uses that: 57 items, checked at the same time every day for three weeks, so each weekday appears three times.</p>
+          <ul>
+            <li>Grouped items by how they're likely priced instead of by aisle: commodity perishables, markdown items, staples shoppers price-check, promo-driven center store, private-label vs. national-brand pairs, and obscure long-tail items as a control. If the bay leaves move, something automated is running.</li>
+            <li>Planned around the biggest confound, the weekly ad cycle: record promo status on every tag and analyze regular prices separately. Started after Labor Day so the holiday wouldn't distort the window.</li>
+            <li>Early finding from scouting: the app's "in store" price didn't consistently match the shelf tag. The app couldn't replace store visits, so the gap became a variable to measure.</li>
+          </ul>
+          <p class="role"><strong>Next:</strong> deciding what to build on the data.</p>
+        </div>
+        <div class="readout" aria-label="Study design">
+          <div class="rh"><span class="eyebrow">Study design</span><span class="pass">Phase 1</span></div>
+          <div class="metric"><b>57</b><span>items on a fixed route</span></div>
+          <div class="metric"><b>21</b><span>days, same time each visit</span></div>
+          <div class="metric"><b>6</b><span>pricing mechanisms compared</span></div>
+          <div class="metric"><b>App ≠ shelf</b><span>early finding from scouting</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="approach">
+    <div class="section-head">
+      <h2>How I work</h2>
+      <p>The same four habits show up in every project above.</p>
+    </div>
+    <div class="principles">
+      <div class="principle">
+        <h3>Fix the data first</h3>
+        <p>Most product problems, and most AI quality problems, are data problems. Clean integrations, ontologies, and golden datasets come before clever features.</p>
+      </div>
+      <div class="principle">
+        <h3>Decide what the model decides</h3>
+        <p>Policy stays deterministic where it can. The model gets narrow, checkable jobs, and a person can always step in.</p>
+      </div>
+      <div class="principle">
+        <h3>Measure the expensive mistake</h3>
+        <p>Pick the metric that matches what failure costs, set the bar before building, and test against labeled data.</p>
+      </div>
+      <div class="principle">
+        <h3>Build it to learn it</h3>
+        <p>I prototype and ship with Claude Code alongside engineering, so decisions come from working software instead of slides.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-head">
+      <h2>Experience</h2>
+      <p>Startups since the seed round, across CPG and retail, beauty, sustainability, supply chain, food retail, and enterprise security.</p>
+    </div>
+    <div class="roles">
+      <div class="row"><span class="when">2024 – now</span><span class="what"><strong>Novi Connect</strong><span>Group Product Manager</span></span><span class="note">Data, AI/ML, and Retail Experience on a two-sided platform for brands and retailers. Hands-on builder since 2025.</span></div>
+      <div class="row"><span class="when">2018 – 2023</span><span class="what"><strong>NakedPoppy</strong><span>Director of Product</span></span><span class="note">AI recommendations and photo-based skin tone analysis. Grew users 10× in three years.</span></div>
+      <div class="row"><span class="when">2017 – 2024</span><span class="what"><strong>Slater Crawford LLC</strong><span>Business Operations Consultant</span></span><span class="note">Helped a bakery grow from one location to five.</span></div>
+      <div class="row"><span class="when">2017</span><span class="what"><strong>Domino Data Lab</strong><span>Product Manager</span></span><span class="note">Enterprise ML platform, working with customer data science teams.</span></div>
+      <div class="row"><span class="when">2010 – 2017</span><span class="what"><strong>CloudPassage</strong><span>Product Manager</span></span><span class="note">Joined in the seed round. DevOps integrations, compliance, and a core UX redesign.</span></div>
+    </div>
+  </section>
+
+  <section id="coverage">
+    <div class="section-head">
+      <h2>Coverage of products I worked on</h2>
+      <p>Public pages about the programs, with what I owned in each.</p>
+    </div>
+    <div class="roles">
+      <div class="row"><span class="when">Ulta Beauty</span><span class="what"><strong><a href="https://www.ulta.com/discover/conscious-beauty" target="_blank" rel="noopener">Conscious Beauty, powered by Novi</a></strong><span>Program page</span></span><span class="note">I own the Conscious Beauty program at Novi and led its 2026 re-launch.</span></div>
+      <div class="row"><span class="when">Aug 2025</span><span class="what"><strong><a href="https://www.prnewswire.com/news-releases/grove-collaborative-taps-novi-to-power-verified-product-claims-across-its-full-marketplace-302525554.html" target="_blank" rel="noopener">Grove Collaborative taps Novi to power verified product claims</a></strong><span>PR Newswire</span></span><span class="note">I led the implementation of Grove's integration: product catalog data in, verified claims out. It proved out a 50% cut in enterprise onboarding time.</span></div>
+      <div class="row"><span class="when">Jun 2020</span><span class="what"><strong><a href="https://beautymatter.com/articles/ingredient-transparency-technology-sephora-partners-with-novi" target="_blank" rel="noopener">Ingredient transparency technology: Sephora partners with Novi</a></strong><span>BeautyMatter</span></span><span class="note">This announced the partnership, before my time. I later rebuilt the analytics dashboards that screen Sephora's catalog against its Public Chemicals Policy, reversing churn on the account.</span></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact">
+      <h2>Let's talk.</h2>
+      <div class="links">
+        <div class="email">
+          <code id="email">tatiana.a.crawford@gmail.com</code>
+          <button class="copy" id="copy" type="button">Copy email</button>
+        </div>
+        <a href="https://linkedin.com/in/tatianacrawford" target="_blank" rel="noopener">linkedin.com/in/tatianacrawford</a>
+        <a href="https://github.com/Turbo-Tats" target="_blank" rel="noopener">github.com/Turbo-Tats</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>Tatiana Crawford · Denver, Colorado</footer>
+</div>
+
+<script>
+(function () {
+  // Skills (inner ring) connect to projects (outer ring) through the "Trusted AI" core.
+  var nodes = [
+    { id: 'core', label: 'Product data', x: 260, y: 200, r: 34, kind: 'core' },
+    { id: 'evals', label: 'Evals', x: 172, y: 142, r: 9, kind: 'skill' },
+    { id: 'hitl', label: 'Human-in-the-loop', x: 372, y: 128, r: 9, kind: 'skill' },
+    { id: 'integ', label: 'Integrations', x: 120, y: 205, r: 9, kind: 'skill' },
+    { id: 'onto', label: 'Ontology', x: 382, y: 268, r: 9, kind: 'skill' },
+    { id: 'data', label: 'Data foundations', x: 168, y: 284, r: 9, kind: 'skill' },
+    { id: 'build', label: 'Claude Code', x: 262, y: 82, r: 9, kind: 'skill' },
+    { id: 'cat', label: 'Categorization', x: 66, y: 46, r: 6, kind: 'project' },
+    { id: 'val', label: 'Doc validator', x: 440, y: 46, r: 6, kind: 'project' },
+    { id: 'relaunch', label: 'Re-launch', x: 476, y: 196, r: 6, kind: 'project' },
+    { id: 'graphgen', label: 'Graph generator', x: 430, y: 352, r: 6, kind: 'project' },
+    { id: 'smart', label: 'Smart Ingredients', x: 92, y: 354, r: 6, kind: 'project' },
+    { id: 'recs', label: 'Recommendations', x: 40, y: 290, r: 6, kind: 'project' },
+    { id: 'retail', label: 'Retailer integrations', x: 40, y: 118, r: 6, kind: 'project' },
+    { id: 'shop', label: 'Shopify app', x: 262, y: 30, r: 6, kind: 'project' }
+  ];
+  var edges = [
+    ['core','evals'],['core','hitl'],['core','onto'],['core','data'],['core','build'],['core','integ'],
+    ['integ','retail'],['data','retail'],['integ','relaunch'],['integ','shop'],['integ','cat'],
+    ['evals','cat'],['data','cat'],['hitl','cat'],['build','cat'],
+    ['evals','val'],['hitl','val'],
+    ['build','relaunch'],
+    ['onto','graphgen'],['build','graphgen'],['data','graphgen'],
+    ['data','smart'],['onto','smart'],
+    ['data','recs'],['evals','recs'],
+    ['build','shop'],['data','shop']
+  ];
+  var NS = 'http://www.w3.org/2000/svg';
+  var svg = document.getElementById('graph');
+  var eg = document.getElementById('edges'), ng = document.getElementById('nodes');
+  var byId = {}; nodes.forEach(function (n) { byId[n.id] = n; });
+  var edgeEls = edges.map(function (e) {
+    var a = byId[e[0]], b = byId[e[1]], l = document.createElementNS(NS, 'line');
+    l.setAttribute('x1', a.x); l.setAttribute('y1', a.y); l.setAttribute('x2', b.x); l.setAttribute('y2', b.y);
+    l.setAttribute('class', 'edge'); eg.appendChild(l); return { el: l, a: e[0], b: e[1] };
+  });
+  var nodeEls = {};
+  nodes.forEach(function (n) {
+    var g = document.createElementNS(NS, 'g');
+    g.setAttribute('class', 'node ' + n.kind); g.setAttribute('tabindex', '0');
+    g.setAttribute('role', 'button'); g.setAttribute('aria-label', n.label);
+    var c = document.createElementNS(NS, 'circle'); c.setAttribute('cx', n.x); c.setAttribute('cy', n.y); c.setAttribute('r', n.r);
+    var t = document.createElementNS(NS, 'text'); t.textContent = n.label;
+    if (n.kind === 'core') {
+      t.setAttribute('x', n.x); t.setAttribute('y', n.y + n.r + 20); t.setAttribute('text-anchor', 'middle');
+    } else {
+      var right = n.x > 260;
+      t.setAttribute('x', n.x + (right ? -(n.r + 7) : n.r + 7)); t.setAttribute('y', n.y + 4);
+      t.setAttribute('text-anchor', right ? 'end' : 'start');
+      if (n.kind === 'project') { t.setAttribute('y', n.y - 11); t.setAttribute('x', n.x); t.setAttribute('text-anchor', n.x < 120 ? 'start' : n.x > 400 ? 'end' : 'middle'); }
+    }
+    g.appendChild(c); g.appendChild(t); ng.appendChild(g); nodeEls[n.id] = g;
+    function on() {
+      svg.classList.add('dim'); g.classList.add('on');
+      edgeEls.forEach(function (e) {
+        if (e.a === n.id || e.b === n.id) {
+          e.el.classList.add('on'); nodeEls[e.a === n.id ? e.b : e.a].classList.add('on');
+        }
+      });
+    }
+    function off() {
+      svg.classList.remove('dim');
+      edgeEls.forEach(function (e) { e.el.classList.remove('on'); });
+      Object.keys(nodeEls).forEach(function (k) { nodeEls[k].classList.remove('on'); });
+    }
+    g.addEventListener('mouseenter', on); g.addEventListener('mouseleave', off);
+    g.addEventListener('focus', on); g.addEventListener('blur', off);
+  });
+
+  var btn = document.getElementById('copy'), code = document.getElementById('email');
+  btn.addEventListener('click', function () {
+    var text = code.textContent;
+    function selectIt() {
+      var r = document.createRange(); r.selectNodeContents(code);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Selected, press Copy';
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = 'Copy email'; }, 1800);
+      }, selectIt);
+    } catch (e) { selectIt(); }
+  });
+})();
+</script>
+</body>
+</html>
