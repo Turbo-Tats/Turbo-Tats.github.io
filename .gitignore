@@ -1,0 +1,6 @@
+# Private, local-only context for Claude Code. Never commit these.
+CLAUDE.local.md
+private/
+
+# OS clutter
+.DS_Store
