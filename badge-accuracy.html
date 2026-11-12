@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Where to put the LLM · Tatiana Crawford</title>
+<meta name="description" content="Case study: how Novi kept product badges accurate and auditable when retailer ingredient data was messy, by giving an LLM one narrow job and keeping the badge decision deterministic.">
+<meta property="og:title" content="Where to put the LLM: a case study by Tatiana Crawford">
+<meta property="og:description" content="Keeping product badges accurate and auditable when retailer ingredient data is messy.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.turbotats.com/badge-accuracy">
+<link rel="canonical" href="https://www.turbotats.com/badge-accuracy">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232A45D6'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-weight='700' font-size='28' fill='white' text-anchor='middle'%3ETC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Long-form case study: one reading column, wide figures, a sticky "back" bar. Same tokens as index.html. */
+:root {
+  --bg: #F2F5F4; --surface: #FFFFFF; --ink: #13201E; --muted: #55625E; --line: #D3DBD8;
+  --accent: #2A45D6; --accent-soft: #E2E7FB; --pass: #0E7F57;
+  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body: "IBM Plex Sans", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1513; --surface: #16201E; --ink: #E6EEEB; --muted: #9AA9A4; --line: #2A3633;
+    --accent: #93A5FF; --accent-soft: #1D2552; --pass: #4CCB9A; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1513; --surface: #16201E; --ink: #E6EEEB; --muted: #9AA9A4; --line: #2A3633;
+  --accent: #93A5FF; --accent-soft: #1D2552; --pass: #4CCB9A; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 1.05rem; line-height: 1.7;
+  padding-inline: clamp(16px, 5vw, 56px); padding-block: 0; -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 2; background: var(--bg);
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px;
+  max-width: 1120px; margin-inline: auto; padding-block: 18px; border-bottom: 1px solid var(--line); }
+.mark { font-family: var(--display); font-weight: 800; font-size: 1.1rem; color: var(--ink); text-decoration: none; }
+.back { font-size: 0.95rem; color: var(--muted); text-decoration: none; }
+.back:hover { color: var(--ink); }
+article { max-width: 760px; margin-inline: auto; padding-block: clamp(36px, 6vw, 72px) 40px; }
+.eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.1; text-wrap: balance; letter-spacing: -0.02em; }
+h1 { font-size: clamp(2.4rem, 6vw, 3.8rem); font-weight: 800; margin: 12px 0 8px; letter-spacing: -0.035em; }
+.sub { font-size: 1.2rem; color: var(--muted); margin: 0; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 8px; padding: 0; list-style: none; }
+.facts li { font-family: var(--mono); font-size: 0.78rem; border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; background: var(--surface); }
+h2 { font-size: 2rem; font-weight: 800; margin: 56px 0 8px; padding-top: 20px; border-top: 1px solid var(--line); }
+h3 { font-size: 1.25rem; font-weight: 700; margin: 32px 0 6px; }
+p { margin: 0 0 16px; }
+ul { margin: 0 0 16px; padding-left: 1.2em; display: grid; gap: 6px; }
+li::marker { color: var(--accent); }
+ul ul { margin: 6px 0 0; }
+.challenge { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; margin: 8px 0 20px; }
+.challenge .eyebrow { margin-bottom: 4px; }
+.challenge p { margin: 0; font-family: var(--display); font-weight: 700; font-size: 1.2rem; line-height: 1.35; }
+.challenge p.role-line { font-family: var(--body); font-weight: 400; font-size: 1rem; line-height: 1.6; }
+.answer { font-weight: 600; }
+.pains { counter-reset: pain; list-style: none; padding: 0; display: grid; gap: 12px; margin: 12px 0 20px; }
+.pains li { counter-increment: pain; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px 14px 56px; position: relative; }
+.pains li::before { content: counter(pain); position: absolute; left: 18px; top: 13px; font-family: var(--mono); font-weight: 500; color: var(--accent); font-size: 1.1rem; }
+.story { border-left: 3px solid var(--accent); padding: 4px 0 4px 18px; margin: 8px 0 20px; font-style: italic; }
+.aside { color: var(--muted); font-size: 0.98rem; }
+.pause { background: var(--accent-soft); border-radius: 12px; padding: 16px 20px; margin: 20px 0; }
+.pause h3 { margin-top: 0; }
+.pause p:last-child { margin-bottom: 0; }
+figure { margin: 24px 0 28px; }
+figure img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); }
+figcaption { font-size: 0.9rem; color: var(--muted); margin-top: 8px; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 560px) { .pair { grid-template-columns: minmax(0, 1fr); } }
+.end { max-width: 760px; margin-inline: auto; border-top: 1px solid var(--line); padding-block: 28px 48px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 0.95rem; }
+/* Before/after pipeline diagram, built in HTML so it follows the theme and reflows on phones. */
+.flow { display: grid; gap: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; }
+.lane .eyebrow { margin-bottom: 8px; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr); align-items: stretch; gap: 6px; font-size: 0.9rem; line-height: 1.35; }
+.steps li { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--bg); }
+.steps li small { display: block; margin-top: 4px; font-size: 0.8rem; color: var(--muted); }
+.steps li.arrow { border: 0; background: none; padding: 0; align-self: center; color: var(--muted); font-family: var(--mono); }
+.steps li.skip { border-style: dashed; background: transparent; color: var(--muted); }
+.steps li.new { border-color: var(--accent); background: var(--accent-soft); }
+.steps li.new strong { color: var(--accent); }
+.steps li.kept small { color: var(--pass); }
+@media (max-width: 560px) {
+  .steps { grid-template-columns: minmax(0,1fr); }
+  .steps li.arrow { justify-self: center; transform: rotate(90deg); line-height: 1; }
+}
+.related { max-width: 760px; margin: 0 auto; padding-block: 0 8px; font-size: 0.98rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="mark" href="/">Tatiana Crawford</a>
+  <a class="back" href="/#work">← All work</a>
+</header>
+
+<article>
+  <p class="eyebrow">Novi · Group Product Manager · Shipped February 2026</p>
+  <h1>Where to put the LLM</h1>
+  <p class="sub">Keeping product badges accurate and auditable when retailer ingredient data is messy.</p>
+  <ul class="facts" aria-label="At a glance">
+    <li>Shipped Feb 2026</li>
+    <li>~12 brands corrected</li>
+    <li>&lt;100 products corrected</li>
+    <li>0 reported errors since</li>
+  </ul>
+
+  <div class="challenge">
+    <p class="eyebrow">My role</p>
+    <p class="role-line">Led the investigation, set the constraint, made the call, and tested the prompt. Engineering proposed the design and built it.</p>
+  </div>
+
+  <p>Retailers use Novi to award product badges, like the ones that tell a shopper a product meets a retailer's ingredient standards. Every badge depends on mapping a product's ingredient list to our ingredient database. That mapping has to be deterministic: retailers need every decision to be consistent, and they need an audit trail when someone asks why a product earned its badge.</p>
+
+  <h2>The problem</h2>
+  <p>During the onboarding and testing for our first multi-category retailer, they flagged formulated products that would be assigned inaccurate badges. I led the investigation.</p>
+
+  <h2>The root cause</h2>
+  <p>The mapper was working. The problem was upstream, in the ingredient data itself. Formatting quirks in the new categories made our parser read some problematic ingredients as sub-ingredients and drop them, so a product could pass a check it should have failed.</p>
+  <p>Looking across our badging errors, formatting was the single biggest class of problem:</p>
+  <ul>
+    <li>missing or non-standard separators</li>
+    <li>marketing claims and other noise mixed into the ingredient list</li>
+    <li>inconsistent parent-child formatting of ingredients</li>
+  </ul>
+  <p>It had been a minor issue while our retailers sold mostly beauty products. Once food, supplements, and household goods arrived together, it became impossible to miss. No set of rules could cover every format.</p>
+
+  <h2>The fix</h2>
+  <p>Brand-submitted data on retailer sites will always be a little messy. Even careful retailers can't enforce strict formatting on every product page, so unexpected patterns are a given. We had already taken deterministic rules and edge-case handling as far as they could go, and there would never be enough rules to catch every case.</p>
+  <p>Engineering suggested an LLM. We didn't want one parsing ingredients, because that would cost us the consistency and audit trail that make a badge trustworthy. So I set the constraint: the mapping decision stays deterministic, and the LLM gets one tightly defined job.</p>
+  <p>Engineering proposed that job: clean up the formatting, then hand the normalized string to the same deterministic mapper we already trusted. I tested it and refined the prompt, then made the call to go with it, and engineering built it.</p>
+
+  <figure>
+    <div class="flow" role="img" aria-label="Before: messy ingredient text went straight to the mapper and problem ingredients were dropped. After: an LLM only cleans up formatting, then the same deterministic mapper decides the badge.">
+      <div class="lane">
+        <p class="eyebrow">Before</p>
+        <ol class="steps">
+          <li>Retailer ingredient text <small>as submitted, formatting and all</small></li>
+          <li class="arrow">→</li>
+          <li class="skip">No cleanup step</li>
+          <li class="arrow">→</li>
+          <li class="drop">Deterministic mapper <small>problem ingredients dropped</small></li>
+          <li class="arrow">→</li>
+          <li>Badge decision <small>can pass a check it should fail</small></li>
+        </ol>
+      </div>
+      <div class="lane">
+        <p class="eyebrow">After</p>
+        <ol class="steps">
+          <li>Retailer ingredient text <small>as submitted, formatting and all</small></li>
+          <li class="arrow">→</li>
+          <li class="new"><strong>LLM cleans up formatting</strong> <small>its only job, guided by product category</small></li>
+          <li class="arrow">→</li>
+          <li>Same deterministic mapper <small>unchanged</small></li>
+          <li class="arrow">→</li>
+          <li class="kept">Badge decision <small>with its audit trail</small></li>
+        </ol>
+      </div>
+    </div>
+    <figcaption>The only new step is the LLM's formatting cleanup. The deterministic mapper and its audit trail are unchanged.</figcaption>
+  </figure>
+
+  <h2>Testing the prompt</h2>
+  <p>I tested the prompt against three sets of ingredient lists:</p>
+  <ol class="pains">
+    <li>the problem lists that started the investigation</li>
+    <li>randomly selected lists from other retailers</li>
+    <li>examples from every product category, from data I had already gathered from prospective retailers</li>
+  </ol>
+  <p>Testing changed the design. Adding the product category to the prompt improved the cleanup a lot, because supplements follow almost the opposite formatting conventions from food, and many household-goods strings aren't ingredient lists at all.</p>
+
+  <h2>Rolling it out</h2>
+  <p>We shipped right away for the new retailer, since there were no live badges to break. For an existing retailer, many brands already had live badges, so we measured every badge the change would affect before releasing. It touched about a dozen brands and fewer than 100 products, and every change was a correction: removing a badge that had been issued in error. We let those brands know first, then released.</p>
+
+  <h2>The result</h2>
+  <p>Since launch in February 2026, there have been no reported errors from this class of problem.</p>
+
+  <h2>What I'd do next time</h2>
+  <p>We used the problem lists for the initial testing only. Next time, I'd keep them as a regression set that every future prompt change has to pass, so the fix keeps holding as the prompt evolves.</p>
+
+  <h2>What I took from it</h2>
+  <p>Separate the layers before you choose a fix: the rules weren't wrong, the input was. And put the LLM where its mistakes are cheap and easy to check, never where the decision has to be auditable.</p>
+</article>
+
+<p class="related">Related: <a href="smart-ingredients">Smart Ingredients, matching ingredient names for shoppers with skin sensitivities</a></p>
+
+<footer class="end">
+  <a href="/#work">← Back to all work</a>
+  <span>Questions? <a href="/#contact">Say hi.</a></span>
+</footer>
+</body>
+</html>

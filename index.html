@@ -349,6 +349,28 @@ footer { padding-block: 28px 40px; color: var(--muted); font-size: 0.85rem; bord
 
       <article class="case">
         <div class="body">
+          <p class="eyebrow">Novi Connect · 2026 · Led the investigation</p>
+          <h3>Where to put the LLM</h3>
+          <p>Keeping product badges accurate and auditable when retailer ingredient data is messy.</p>
+          <div class="pipeline" aria-label="Pipeline">
+            <span>Ingredient text</span><i>→</i><span class="loop">LLM cleans formatting</span><i>→</i><span>Deterministic mapper</span><i>→</i><span>Badge + audit trail</span>
+          </div>
+          <ul>
+            <li>Traced the inaccurate badges a new multi-category retailer flagged during onboarding and testing to formatting quirks upstream, in the ingredient data.</li>
+            <li>Kept the badge decision deterministic and gave an LLM one narrow job: clean up the formatting first.</li>
+            <li>Measured every live badge the change would touch, told those brands first, then released.</li>
+          </ul>
+          <p class="role"><strong>My role:</strong> led the investigation, set the constraint, made the call, and tested the prompt. Engineering proposed the design and built it. <a href="badge-accuracy">Read the full case study</a></p>
+        </div>
+        <div class="readout" aria-label="Results">
+          <div class="rh"><span class="eyebrow">Outcome</span><span class="pass">Shipped Feb 2026</span></div>
+          <div class="metric"><b>0</b><span>reported errors from this class of problem since launch</span></div>
+          <div class="metric"><b>&lt;100</b><span>products corrected across about a dozen brands</span></div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="body">
           <p class="eyebrow">NakedPoppy · 2022 · Led discovery and definition</p>
           <h3>Smart Ingredients: shopping with confidence for sensitive skin</h3>
           <p>Growth depended on social algorithms the company didn't control. Wellness partnerships had worked before, so we tested whether allergists and skincare professionals could bring in shoppers managing skin sensitivities.</p>
