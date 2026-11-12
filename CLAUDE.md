@@ -32,7 +32,6 @@ Sections, in order, by `id`: `top` (hero), `work` (case studies), `side` (side p
 - **Public-page rules:**
   - No contract values or revenue figures.
   - Name only customers whose partnership with Novi is public (Ulta, Sephora, Target, Grove). The categorization customer stays unnamed.
-  - Anything from the grocery-pricing study is simulated until real data exists. Never present it as a finding.
 
 ## Source of truth
 
